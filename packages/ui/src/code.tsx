@@ -1,11 +1,27 @@
-import { type JSX } from "react";
+"use client";
+
+import * as React from "react";
+import Prism from "prismjs";
+import "prismjs/themes/prism.css";
+
+export interface CodeProps {
+  code: string;
+  language?: string;
+  className?: string;
+}
 
 export function Code({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}): JSX.Element {
-  return <code className={className}>{children}</code>;
+  code,
+  language = "javascript",
+  className = "",
+}: CodeProps): JSX.Element {
+  React.useEffect(() => {
+    Prism.highlightAll();
+  }, [code, language]);
+
+  return (
+    <pre className={`${className} language-${language}`}>
+      <code>{code}</code>
+    </pre>
+  );
 }

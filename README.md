@@ -1,84 +1,122 @@
-# Turborepo starter
+# TourMate
 
-This is an official starter Turborepo.
+A modern tour booking platform built with Next.js, TypeScript, and MongoDB.
 
-## Using this example
+## Project Structure
 
-Run the following command:
+This is a monorepo using Turborepo with the following packages:
 
-```sh
-npx create-turbo@latest
+- `apps/web`: Next.js web application
+- `packages/auth`: Authentication utilities
+- `packages/config`: Shared configuration
+- `packages/database`: MongoDB models and services
+- `packages/shared`: Shared utilities
+- `packages/types`: TypeScript type definitions
+- `packages/ui`: Shared UI components
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm 9+
+- MongoDB Atlas account
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/tourmate.git
+cd tourmate
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+2. Install dependencies:
+```bash
+npm install
 ```
 
-### Develop
+3. Set up environment variables:
+```bash
+# Copy the example env file
+cp packages/config/.env.example .env
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+# Edit .env with your values
+# Required variables:
+# - MONGODB_URI
+# - MONGODB_DB_NAME
+# - JWT_SECRET
+# - COOKIE_SECRET
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+4. Run the development server:
+```bash
+npm run dev
 ```
 
-## Useful Links
+## Development
 
-Learn more about the power of Turborepo:
+### Commands
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- `npm run dev` - Start development server
+- `npm run build` - Build all packages
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
+- `npm test` - Run tests
+
+### Package Scripts
+
+Each package has its own scripts that can be run using Turborepo:
+
+```bash
+# Example: Run database tests
+npm run test:connection -w @repo/database
+npm run test:user -w @repo/database
+```
+
+## Deployment
+
+This project is set up for deployment on Vercel:
+
+1. Push your code to GitHub
+2. Import the project in Vercel
+3. Configure environment variables
+4. Deploy
+
+## Environment Variables
+
+Required environment variables:
+
+```bash
+# Database
+MONGODB_URI=your_mongodb_connection_string
+MONGODB_DB_NAME=your_database_name
+
+# Authentication
+JWT_SECRET=your_jwt_secret_key
+COOKIE_SECRET=your_cookie_secret_key
+
+# Server
+NODE_ENV=development
+PORT=3000
+API_URL=http://localhost:3000
+CORS_ORIGIN=http://localhost:3000
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=60000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Storage
+STORAGE_TYPE=local
+STORAGE_LOCAL_PATH=./uploads
+```
+
+## Contributing
+
+1. Create a feature branch
+2. Commit your changes
+3. Push to the branch
+4. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

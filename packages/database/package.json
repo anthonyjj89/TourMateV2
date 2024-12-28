@@ -1,0 +1,29 @@
+{
+  "name": "@repo/database",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "eslint . --max-warnings 0",
+    "type-check": "tsc --noEmit",
+    "test:connection": "ts-node src/test-connection.ts",
+    "test:user": "ts-node src/test-user.ts"
+  },
+  "dependencies": {
+    "@repo/config": "*",
+    "@repo/shared": "*",
+    "@repo/types": "*",
+    "mongoose": "^8.0.3"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^20.5.2",
+    "eslint": "^8.53.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2"
+  }
+}
