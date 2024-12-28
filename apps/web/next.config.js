@@ -14,6 +14,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
-};
+  experimental: {
+    externalDir: true,
+    outputFileTracingRoot: require("path").join(__dirname, "../../"),
+  },
+}
 
 module.exports = nextConfig;
